@@ -73,7 +73,7 @@ function! spelunker#correct#correct_from_list(is_correct_all, is_feeling_lucky)
 				\ {selected -> s:nvim_popup_menu_plugin_callback(l:target_word, a:is_correct_all, l:spell_suggest_list_for_replace, selected)})
 	elseif exists('g:quickui#style#border')
 		call add(l:spell_suggest_list_for_replace, '')
-		call quickui#listbox#open(
+		call quickui#context#open(
 				\ l:spell_suggest_list_for_replace[:-2],
 				\ {
 				\   'callback': { selected -> s:nvim_popup_menu_plugin_callback(
@@ -81,9 +81,7 @@ function! spelunker#correct#correct_from_list(is_correct_all, is_feeling_lucky)
 				\     a:is_correct_all,
 				\     l:spell_suggest_list_for_replace,
 				\     l:spell_suggest_list_for_replace[selected]
-				\   )},
-				\   'col': wincol(),
-				\   'line': winline() + 1
+				\   )}
 				\ })
 	else
 		let l:selected = inputlist(l:spell_suggest_list_for_input_list)
